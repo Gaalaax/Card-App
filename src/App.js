@@ -4,44 +4,42 @@ import { useState } from "react";
 import { Button, Grid, Input, Textarea, Container, Stack } from "@mantine/core";
 import "@mantine/core/styles.css";
 
-let arr = [
-  {
-    id: 1,
-    title: "Latismus Dorsi 1",
-    paragraph: "aciklama 1",
-  },
-  {
-    id: 2,
-    title: "Latismus Dorsi 2",
-    paragraph: "aciklama 2",
-  },
-  {
-    id: 3,
-    title: "Latismus Dorsi 3",
-    paragraph: "aciklama 3",
-  },
-  {
-    id: 4,
-    title: "Latismus Dorsi 4",
-    paragraph: "aciklama 4",
-  },
-];
-
 const App = () => {
   const [title, setTitle] = useState("");
   const [paragraf, setParagraf] = useState("");
-  const [list, setList] = useState(arr);
-  const [lesson, setLesson] = useState(11);
+  const [list, setList] = useState([
+    {
+      id: 1,
+      title: "Latismus Dorsi 1",
+      paragraph: "aciklama 1",
+    },
+    {
+      id: 2,
+      title: "Latismus Dorsi 2",
+      paragraph: "aciklama 2",
+    },
+    {
+      id: 3,
+      title: "Latismus Dorsi 3",
+      paragraph: "aciklama 3",
+    },
+    {
+      id: 4,
+      title: "Latismus Dorsi 4",
+      paragraph: "aciklama 4",
+    },
+  ]);
   const click = () => {
     setTitle("");
     setParagraf("");
-    const copyList = [...list];
-    copyList.push({
-      id: 5,
-      title: title,
-      paragraph: paragraf,
-    });
-    setList(copyList);
+    setList([
+      {
+        id: 5,
+        title: title,
+        paragraph: paragraf,
+      },
+      ...list,
+    ]);
   };
   return (
     <Container>
@@ -71,7 +69,7 @@ const App = () => {
       <Grid>
         {list.map(({ id, title, paragraph }) => (
           <Grid.Col span={3} key={id}>
-            <Card paragraph={paragraph} title={title} lesson={lesson} />
+            <Card paragraph={paragraph} title={title} />
           </Grid.Col>
         ))}
       </Grid>
